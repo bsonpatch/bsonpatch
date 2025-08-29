@@ -1,4 +1,6 @@
-# This is an implementation of  [RFC 6902 JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902) written in Java with extended BSON pointer.
+# BSON Patch
+
+This is an implementation of  [RFC 6902 JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902) written in Java with extended BSON pointer.
 
 This [JSON Patch](http://jsonpatch.com) implementation works directly with [BSON documents](http://bsonspec.org/) using the [MongoDB Java driver implementation of BSON](https://www.mongodb.com/json-and-bson). 
 
@@ -25,7 +27,7 @@ The code here was forked (copied, renamed, repackaged, modified) from [eBay bson
 
 ### How to use:
 
-### Current Version : 0.5.0
+### Current Version : ${version.coordinate}
 
 Add following to `<dependencies/>` section of your pom.xml -
 
@@ -33,7 +35,7 @@ Add following to `<dependencies/>` section of your pom.xml -
 <dependency>
   <groupId>io.github.bsonpatch</groupId>
   <artifactId>bsonpatch</artifactId>
-  <version>0.5.0</version>
+  <version>${version.coordinate}</version>
 </dependency>
 ```
 

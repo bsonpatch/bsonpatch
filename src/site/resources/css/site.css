@@ -1,0 +1,6 @@
+#bannerLeft img {
+    height: 60px;
+    width: auto;
+    margin-right: 10px;     /* Add space between logo and text */
+    vertical-align: middle; /* Align logo nicely with the text */
+}

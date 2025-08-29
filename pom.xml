@@ -9,8 +9,8 @@
 	<version>${version.coordinate}</version>
 	<packaging>jar</packaging>
 	
-	<name>${project.groupId}:${project.artifactId}</name>
-	<description>Java Library to find / apply JSON Patches according to RFC 6902 against BsonValues</description>
+	<name>${project.artifactId} - RFC 6902 for BsonValues</name>
+	<description>Java Library to find and apply JSON Patches according to RFC 6902 against BsonValues</description>
 	<url>https://bsonpatch.github.io/bsonpatch</url>
 
     <scm>
@@ -41,9 +41,27 @@
         <version.coordinate>0.0.1-SNAPSHOT</version.coordinate> <!-- use -Dversion.coordinate=..  -->
         <maven.compiler.release>8</maven.compiler.release>
         <junitVersion>5.13.4</junitVersion>
+        <javadocPluginVersion>3.11.3</javadocPluginVersion>
+        <jacocoPluginVersion>0.8.13</jacocoPluginVersion>
 	</properties>
 	
 	<build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.21.0</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.doxia</groupId>
+                            <artifactId>doxia-module-markdown</artifactId>
+                            <version>2.0.0</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -57,6 +75,25 @@
 					</compilerArgs>
 				</configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacocoPluginVersion}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -81,7 +118,7 @@
 					<plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>3.11.3</version>
+                        <version>${javadocPluginVersion}</version>
                         <configuration>
                             <release>${maven.compiler.release}</release>
                             <doclint>-html,-missing</doclint>
@@ -122,8 +159,81 @@
                             <tokenAuth>true</tokenAuth>
                         </configuration>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-readme-to-site</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <exportAntProperties>true</exportAntProperties>
+                                    <target>
+                                        <mkdir dir="${project.build.directory}/generated-site/markdown"/>
+
+                                        <copy file="${project.basedir}/README.md"
+                                              tofile="${project.build.directory}/generated-site/markdown/index.md"
+                                              filtering="true">
+                                            <filterset begintoken="${"  endtoken="}">
+                                                <filter token="version.coordinate" value="${version.coordinate}"/>
+                                            </filterset>
+                                        </copy>
+
+                                        <copy file="${project.basedir}/CONTRIBUTING.md"
+                                              tofile="${project.build.directory}/generated-site/markdown/contributing.md" />
+
+                                        <replaceregexp file="${project.build.directory}/generated-site/markdown/index.md"
+                                                       match="\[`CONTRIBUTING\.md`\]\(CONTRIBUTING\.md\)"
+                                                       replace="the [Contributing Guide](contributing.html)"
+                                                       byline="true"/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
 				</plugins>
 			</build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                        <version>3.5.0</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${javadocPluginVersion}</version>
+                        <configuration>
+                            <release>${maven.compiler.release}</release>
+                            <doclint>-html,-missing</doclint>
+                        </configuration>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>javadoc</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <version>${jacocoPluginVersion}</version>
+                        <reportSets>
+                            <reportSet>
+                                <reports>
+                                    <report>report</report>
+                                </reports>
+                            </reportSet>
+                        </reportSets>
+                    </plugin>
+                </plugins>
+            </reporting>
 		</profile>
 	</profiles>
 	

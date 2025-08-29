@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/DECORATION/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/2.0.0 https://maven.apache.org/xsd/decoration-2.0.0.xsd">
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>2.1.0</version>
+    </skin>
+
+    <bannerLeft>
+        <name>bsonpatch - RFC 6902 for BsonValues</name>
+        <src>images/bsonpatch.png</src>
+        <href>index.html</href>
+    </bannerLeft>
+
+    <body>
+        <breadcrumbs>
+            <item name="bsonpatch" href="index.html" />
+        </breadcrumbs>
+
+        <menu name="Overview">
+            <item name="Introduction" href="index.html" />
+            <item name="Contributing" href="contributing.html" />
+        </menu>
+        <menu ref="reports" />
+    </body>
+</project>
