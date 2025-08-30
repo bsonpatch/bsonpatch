@@ -1,5 +1,8 @@
+<img src="src/site/resources/images/bsonpatch.png" alt="bsonpatch logo" height="200px"> 
+
 # BSON Patch
 
+This is an implementation of  [RFC 6902 JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902) written in Java with extended BSON pointer.
 This is an implementation of  [RFC 6902 JSON Patch](https://datatracker.ietf.org/doc/html/rfc6902) written in Java with extended BSON pointer.
 
 This [JSON Patch](http://jsonpatch.com) implementation works directly with [BSON documents](http://bsonspec.org/) using the [MongoDB Java driver implementation of BSON](https://www.mongodb.com/json-and-bson). 

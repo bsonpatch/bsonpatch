@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/DECORATION/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project name="${project.name}"
+         xmlns="http://maven.apache.org/DECORATION/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/DECORATION/2.0.0 https://maven.apache.org/xsd/decoration-2.0.0.xsd">
 
     <skin>
-        <groupId>org.apache.maven.skins</groupId>
-        <artifactId>maven-fluido-skin</artifactId>
-        <version>2.1.0</version>
+        <groupId>org.sentrysoftware.maven</groupId>
+        <artifactId>sentry-maven-skin</artifactId>
+        <version>6.4.01</version>
     </skin>
 
     <bannerLeft>
-        <name>bsonpatch - RFC 6902 for BsonValues</name>
+        <name>bsonpatch - RFC 6902 for Bson Values</name>
         <src>images/bsonpatch.png</src>
         <href>index.html</href>
     </bannerLeft>
 
+    <custom>
+        <bodyClass>sentry-orange</bodyClass>
+        <keywords>bson</keywords>
+    </custom>
+
     <body>
-        <breadcrumbs>
+        <links>
             <item name="bsonpatch" href="index.html" />
-        </breadcrumbs>
+            <item name="Github Source" href="https://github.com/bsonpatch/bsonpatch" />
+        </links>
 
         <menu name="Overview">
             <item name="Introduction" href="index.html" />
