@@ -220,7 +220,7 @@
                         <artifactId>maven-scm-publish-plugin</artifactId>
                         <version>3.1.0</version>
                         <configuration>
-                            <pubScmUrl>scm:git:git@github.com:bsonpatch/bsonpatch.git</pubScmUrl>
+                            <pubScmUrl>scm:git:https://github.com/bsonpatch/bsonpatch.git</pubScmUrl>
                             <scmBranch>gh-pages</scmBranch>
                             <content>${project.build.directory}/site</content>
                             <checkinComment>Publish Maven site for ${project.version}</checkinComment>

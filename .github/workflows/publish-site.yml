@@ -1,0 +1,71 @@
+name: Publish Maven Site
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version for -Dversion. coordinate (e.g. 0.5.0-SNAPSHOT or 0.5.0-RELEASE)"
+        required: true
+        type: string
+  push:
+    tags:
+      - '*'  # runs for any tag pushed
+
+permissions:
+  contents: write  # required to push to gh-pages
+
+jobs:
+  publish-site:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ github.event.inputs.version || github.ref_name }}
+      GUARD_BRANCH: master  # change to 'main' if needed
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # we need history to evaluate ancestry
+
+      # Guard: only proceed when the tag points to a commit on GUARD_BRANCH
+      - name: Ensure tag commit is on GUARD_BRANCH
+        id: guard
+        shell: bash
+        run: |
+          # Only guard for tag pushes; allow manual runs
+          if [ "${{ github.event_name }}" != "push" ] || [[ "${{ github.ref }}" != refs/tags/* ]]; then
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Make sure we have the up-to-date remote branch ref
+          git fetch --no-tags --prune origin +refs/heads/${GUARD_BRANCH}:refs/remotes/origin/${GUARD_BRANCH}
+
+          if git merge-base --is-ancestor "origin/${GUARD_BRANCH}" "${GITHUB_SHA}"; then
+            echo "Tag commit is on ${GUARD_BRANCH}. Proceeding."
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Tag commit is NOT on ${GUARD_BRANCH}. Skipping publish."
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up Java
+        if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.proceed == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '17'
+          cache: maven
+
+      - name: Configure Git for CI pushes
+        if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.proceed == 'true'
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global url."https://oauth2:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and publish site to gh-pages
+        if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.proceed == 'true'
+        run: |
+          mvn -B -Prelease -Dversion.coordinate="${VERSION}" clean verify site-deploy
