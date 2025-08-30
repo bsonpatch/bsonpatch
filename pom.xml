@@ -43,6 +43,7 @@
         <junitVersion>5.13.4</junitVersion>
         <javadocPluginVersion>3.11.3</javadocPluginVersion>
         <jacocoPluginVersion>0.8.13</jacocoPluginVersion>
+        <sitePluginVersion>3.12.1</sitePluginVersion>
 	</properties>
 	
 	<build>
@@ -51,7 +52,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.12.1</version>
+                    <version>${sitePluginVersion}</version>
                     <dependencies>
                         <dependency>
                             <groupId>org.apache.maven.doxia</groupId>
@@ -206,7 +207,35 @@
                             </execution>
                         </executions>
                     </plugin>
-				</plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>${sitePluginVersion}</version>
+                        <configuration>
+                            <skipDeploy>true</skipDeploy>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-scm-publish-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <pubScmUrl>scm:git:git@github.com:bsonpatch/bsonpatch.git</pubScmUrl>
+                            <scmBranch>gh-pages</scmBranch>
+                            <content>${project.build.directory}/site</content>
+                            <checkinComment>Publish Maven site for ${project.version}</checkinComment>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>publish-site-to-gh-pages</id>
+                                <phase>site-deploy</phase>
+                                <goals>
+                                    <goal>publish-scm</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
 			</build>
             <reporting>
                 <plugins>
