@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DiffFlags.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bsonpatch - RFC 6902 for Bson Values</a> &gt; <a href="index.source.html" class="el_package">io.github.bsonpatch</a> &gt; <span class="el_source">DiffFlags.java</span></div><h1>DiffFlags.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *  
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *  
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package io.github.bsonpatch;
+
+import java.util.EnumSet;
+
+<span class="fc" id="L24">public enum DiffFlags {</span>
+
+    /**
+     * This flag omits the &lt;i&gt;value&lt;/i&gt; field on remove operations.
+     * This is a default flag.
+     */	
+<span class="fc" id="L30">    OMIT_VALUE_ON_REMOVE,</span>
+    
+    /**
+     * This flag omits all {@link Operation#MOVE} operations, leaving only
+     * {@link Operation#ADD}, {@link Operation#REMOVE}, {@link Operation#REPLACE}
+     * and {@link Operation#COPY} operations. In other words, without this flag,
+     * {@link Operation#ADD} and {@link Operation#REMOVE} operations are not normalized
+     * into {@link Operation#MOVE} operations.
+     */
+<span class="fc" id="L39">    OMIT_MOVE_OPERATION,</span>
+
+    /**
+     * This flag omits all {@link Operation#COPY} operations, leaving only
+     * {@link Operation#ADD}, {@link Operation#REMOVE}, {@link Operation#REPLACE}
+     * and {@link Operation#MOVE} operations. In other words, without this flag,
+     * {@link Operation#ADD} operations are not normalized into {@link Operation#COPY}
+     * operations.
+     */
+<span class="fc" id="L48">    OMIT_COPY_OPERATION,</span>
+
+    /**
+     * This flag adds a &lt;i&gt;fromValue&lt;/i&gt; field to all {@link Operation#REPLACE} operations.
+     * &lt;i&gt;fromValue&lt;/i&gt; represents the the value replaced by a {@link Operation#REPLACE}
+     * operation, in other words, the original value. This can be useful for debugging
+     * output or custom processing of the diffs by downstream systems.
+     * Please note that this is a non-standard extension to RFC 6902 and will not affect
+     * how patches produced by this library are processed by this or other libraries.
+     *
+     * @since 0.4.1
+     */
+<span class="fc" id="L60">    ADD_ORIGINAL_VALUE_ON_REPLACE,</span>
+
+    /**
+     * This flag normalizes a {@link Operation#REPLACE} operation into its respective
+     * {@link Operation#REMOVE} and {@link Operation#ADD} operations. Although it adds
+     * a redundant step, this can be useful for auditing systems in which immutability
+     * is a requirement.
+     * &lt;p&gt;
+     * For the flag to work, {@link DiffFlags#ADD_ORIGINAL_VALUE_ON_REPLACE} has to be
+     * enabled as the new instructions in the patch need to grab the old &lt;i&gt;fromValue&lt;/i&gt;
+     * {@code &quot;op&quot;: &quot;replace&quot;, &quot;fromValue&quot;: &quot;F1&quot;, &quot;value&quot;: &quot;F2&quot; }
+     * The above instruction will be split into
+     * {@code &quot;op&quot;:&quot;remove&quot;, &quot;value&quot;:&quot;F1&quot; } and {@code &quot;op&quot;:&quot;add&quot;, &quot;value&quot;:&quot;F2&quot;} respectively.
+     * &lt;p&gt;
+     * Please note that this is a non-standard extension to RFC 6902 and will not affect
+     * how patches produced by this library are processed by this or other libraries.
+     *
+     * @since 0.4.11
+     */
+<span class="fc" id="L79">    ADD_EXPLICIT_REMOVE_ADD_ON_REPLACE,</span>
+
+    /**
+     * This flag instructs the diff generator to emit {@link Operation#TEST} operations
+     * that validate the state of the source document before each mutation. This can be
+     * useful if you want to ensure data integrity prior to applying the patch.
+     *
+     * The resulting patches are standard per RFC 6902 and should be processed correctly
+     * by any compliant library; due to the associated space and performance costs,
+     * however, this isn't default behavior.
+     *
+     * @since 0.4.8
+     */
+<span class="fc" id="L92">    EMIT_TEST_OPERATIONS;</span>
+	
+    public static EnumSet&lt;DiffFlags&gt; defaults() {
+<span class="fc" id="L95">        return EnumSet.of(OMIT_VALUE_ON_REMOVE);</span>
+    }
+
+    public static EnumSet&lt;DiffFlags&gt; dontNormalizeOpIntoMoveAndCopy() {
+<span class="fc" id="L99">    	return EnumSet.of(OMIT_MOVE_OPERATION, OMIT_COPY_OPERATION);</span>
+    }
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -1,0 +1,686 @@
+<!DOCTYPE html><html lang="en">
+
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title>Project Licenses &ndash; bsonpatch - RFC 6902 for Bson Values</title>
+
+	<meta name="keywords" content="bson" />
+	<meta name="generator" content="Maven Site Plugin, Doxia Site Renderer 1.11.1, Skin sentry-maven-skin 6.4.01, with org.apache.maven.plugins:maven-project-info-reports-plugin:3.5.0:licenses" />
+
+
+
+	<link rel="stylesheet" href="./css/main-combined.css">
+	<link rel="stylesheet" href="./css/site.css">
+
+</head>
+
+<body class="sentry-site sentry-orange" ng-class="{'dark': $matchMedia.dark }" ng-app="sentry.site" ng-strict-di ng-controller="siteController" ng-keydown="handleKeyboard($event)">
+
+<script>(function (){var d=window.localStorage.getItem('matchMediaLight.userIsDark');return null!=d?d==='true':window.matchMedia('(prefers-color-scheme: dark)').matches})()&&document.body.classList.add('dark')</script>
+
+	<header role="banner">
+
+		<div class="hidden-xs navbar navbar-inverse site-logo">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="index.html"><img src="images/bsonpatch.png" ></a>
+			</div>
+			<ul class="nav navbar-nav">
+<li><a href="index.html">bsonpatch</a></li>
+<li><a href="https://github.com/bsonpatch/bsonpatch" class="externalLink">Github Source</a></li>
+			</ul>
+	</div>
+
+	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs">
+			<ul class="nav navbar-nav">
+				<li><a href="index.html">bsonpatch - RFC 6902 for Bson Values</a></li>
+			</ul>
+		</div>
+
+		<div class="navbar site-banner">
+
+			<div class="container-fluid">
+
+				<div class="navbar-header" ng-class="{'show-search-xs': showSearchInput && $matchMedia.size == 'xs'}">
+					<button
+						class="navbar-toggle hidden-lg hidden-md hidden-sm"
+						ng-click="showSearchInput = !showSearchInput; clearSearch()"
+						title="{{ showSearchInput ? 'Close the search' : 'Search' }}"
+						type="button"
+					>
+						<i ng-class="showSearchInput ? 'fas fa-times' : 'fa fa-search'"></i>
+					</button>
+					<div class="navbar-brand">
+					<div class="header-title">bsonpatch - RFC 6902 for Bson Values</div>
+						<div class="header-subtitle">
+							<span class="version-prefix">Version</span>
+							<span class="version">0.5.0-SNAPSHOT</span>
+						</div>
+					</div>
+					<div class="navbar-brand header-xxs visible-xs">
+						<div class="header-title">bsonpatch - RFC 6902 for Bson Values</div>
+						<div class="header-subtitle">
+							Version <strong>0.5.0-SNAPSHOT</strong>
+						</div>
+					</div>
+					<form class="navbar-form site-search site-search-xs visible-xs" ng-show="showSearchInput">
+						<input
+							type="search"
+							class="form-control"
+							placeholder="Search..."
+							aria-label="Search"
+							ng-model="siteSearch"
+							ng-change="search(siteSearch)"
+							ng-model-options="{ debounce: 500 }"
+							ng-keydown="handleKeyboard($event)"
+							focus-me="showSearchInput"
+						/>
+					</form>
+				</div>
+
+				<form class="navbar-form navbar-right site-search hidden-xs">
+					<div class="form-group has-feedback">
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Search..."
+							aria-label="Search"
+							ng-model="siteSearch"
+							ng-change="search(siteSearch)"
+							ng-model-options="{ debounce: 500 }"
+							ng-keydown="handleKeyboard($event)"
+						/>
+						<i class="fa fa-search form-control-feedback" aria-hidden="true"></i>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</header>
+
+	<div class="container-fluid main-container">
+		<div class="row display-flex">
+
+			<nav class="left-menu hidden-xs col-sm-4 col-md-3" role="navigation">
+		<h5 class="text-uppercase">Overview</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="index.html"><i class="fas fa-home"></i> Introduction</a></li>
+
+<li><a href="contributing.html"><i class="fas fa-file-alt"></i> Contributing</a></li>
+
+</ul>
+		<h5 class="text-uppercase">Project Documentation</h5>
+
+<ul class="nav nav-pills nav-stacked animate">
+ <li><a href="project-info.html"><i ng-class="hideSubItems ? 'fas fa-folder' : 'fas fa-folder-open'"></i> Project Information <span class="badge">9</span></a></li>
+
+<ul class="nav nav-pills nav-stacked animate">
+<li><a href="dependencies.html"><i class="fas fa-file-alt"></i> Dependencies</a></li>
+
+<li><a href="dependency-info.html"><i class="fas fa-file-alt"></i> Dependency Information</a></li>
+
+<li class="active"><a href="licenses.html" ng-click="hideSubItems = !hideSubItems"><i class="fas fa-file-alt"></i> Licenses</a></li>
+
+<li><a href="plugin-management.html"><i class="fas fa-file-alt"></i> Plugin Management</a></li>
+
+<li><a href="plugins.html"><i class="fas fa-file-alt"></i> Plugins</a></li>
+
+<li><a href="scm.html"><i class="fas fa-file-alt"></i> Source Code Management</a></li>
+
+<li><a href="summary.html"><i class="fas fa-file-alt"></i> Summary</a></li>
+
+<li><a href="team.html"><i class="fas fa-file-alt"></i> Team</a></li>
+
+</ul>
+
+<li><a href="project-reports.html"><i class="fas fa-folder"></i> Project Reports <span class="badge">2</span></a></li>
+
+</ul>
+
+			</nav>
+
+			<main class="main-content col-xs-12 col-sm-8 col-md-9">
+
+				<div ng-hide="siteSearch">
+
+					<div class="row">
+
+					<div class="col-md-12">
+					<div class="page-header visible-print-block">
+							<h3><small>bsonpatch - RFC 6902 for Bson Values</small><br/>							bsonpatch - RFC 6902 for Bson Values 0.5.0-SNAPSHOT
+							</h3>
+						</div>
+						<div class="parents hidden-xs">
+								<ol class="breadcrumb">
+									<!-- Home -->
+									<li>
+										<a href="index.html">
+											<i class="fas fa-home"></i>Home
+										</a>
+									</li>
+								<!-- menus and items -->
+									<li>Project Documentation</li>
+									<li><a href="project-info.html">Project Information</a></li>
+								</ol>
+							</div>
+						<div class="parents-xs visible-xs">
+								<ul class="list-group">
+									<!-- Home -->
+									<a class="list-group-item" href="index.html">
+										<i class="fas fa-home"></i>Home
+									</a>
+									<!-- menus and items -->
+									<li class="list-group-item"><i class="fas fa-level-up-alt fa-flip-horizontal"></i>Project Documentation</li>
+									<a class="list-group-item" href="project-info.html">
+										<i class="fas fa-level-up-alt fa-flip-horizontal"></i>Project Information
+										<span class="badge">9</span>
+									</a>
+							</ul>
+						</div>
+<section>
+ <h2 id="overview"><a href="#overview">Overview</a></h2><a name="Overview"></a>
+ <p>Typically the licenses listed for the project are that of the project itself, and not of dependencies.</p>
+</section>
+<section>
+ <h2 id="project-licenses"><a href="#project-licenses">Project Licenses</a></h2><a name="Project_Licenses"></a>
+ <section>
+  <h3 id="the-apache-software-license-2c-version-2-0"><a href="#the-apache-software-license-2c-version-2-0">The Apache Software License, Version 2.0</a></h3><a name="The_Apache_Software_License.2C_Version_2.0"></a>
+  <div>
+   <pre copy-to-clipboard="">                                 Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "[]"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+
+   Copyright [yyyy] [name of copyright owner]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+</pre>
+  </div>
+ </section>
+</section>
+
+							<div class="document-footer">
+<div class="keywords">
+<span class="label label-default">bson</span>
+</div>
+						</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Search results -->
+				<div class="search-results" ng-show="siteSearch">
+
+					<h2 class="hidden-xs">
+						Search Results for <em>{{siteSearch | truncate:'50'}}</em>
+					</h2>
+
+					<div ng-show="resultArray.length">
+
+						<!-- Result count -->
+						<div class="hidden-xs">
+							{{resultArray.length}}
+							<span ng-pluralize count="resultArray.length" when="{'1': 'result', 'other': 'results'}"></span>
+						</div>
+
+						<!-- List of results (Desktop) -->
+						<div ng-if="$matchMedia.size != 'xs'" class="search-results-content hidden-xs">
+							<div class="search-results-entry" ng-repeat="result in resultArray track by result.href">
+								<div class="search-results-parents small text-muted">
+									<span class="search-results-parents-entry" ng-repeat="parent in result.parents track by parent.title">
+										<a ng-if="parent.path" ng-href="{{parent.path}}" ng-bind-html="parent.title"></a>
+										<span ng-if="!parent.path" ng-bind-html="parent.title"></span>
+									</span>
+								</div>
+								<p class="search-results-title"><a ng-href="{{result.href}}"><i class="fas fa-file-alt"></i>{{result.title}}</a></p>
+								<div class="progressbar" aria-hidden="true">
+									<div class="bar-bg"></div>
+									<div class="bar-fg" ng-style="{width: result.score * 100 + '%'}"></div>
+								</div>
+								<div class="small extract">{{result.body | truncate:'400'}}</div>
+							</div>
+						</div>
+
+						<!-- List of results (mobile) -->
+						<ul ng-if="$matchMedia.size == 'xs'" class="list-group search-results-content search-results-content-xs visible-xs">
+							<a
+								ng-repeat="result in resultArray track by result.href"
+								ng-href="{{result.href}}"
+								class="list-group-item"
+							>
+								<div class="search-results-parents small" aria-hidden="true">
+									<span class="search-results-parents-entry" ng-repeat="parent in result.parents track by parent.title" ng-bind-html="parent.title"></span>
+								</div>
+								<div class="search-results-title"><i class="fas fa-file-alt"></i>{{result.title}}</div>
+								<div class="progressbar" aria-hidden="true">
+									<div class="bar-bg"></div>
+									<div class="bar-fg" ng-style="{width: result.score * 100 + '%'}"></div>
+								</div>
+								<div class="small extract">{{result.body | truncate:'100'}}</div>
+							</a>
+						</ul>
+
+					</div>
+
+					<div ng-hide="resultArray.length">
+						<em>No results.</em>
+					</div>
+
+				</div>
+
+			</main>
+
+		</div>
+	</div>
+
+	<!--Footer in mobile and desktop-->
+	<footer class="footer">
+
+		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
+			<strong>bsonpatch - RFC 6902 for Bson Values 0.5.0-SNAPSHOT</strong>
+			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
+			Documentation as of <strong>2025-08-30</strong>
+		</p>
+	<div class="visible-xs navbar navbar-inverse site-logo site-logo-xs">
+			<ul class="nav navbar-nav">
+			<li><a href="index.html">bsonpatch - RFC 6902 for Bson Values</a></li>
+<li><a href="index.html">bsonpatch</a></li>
+<li><a href="https://github.com/bsonpatch/bsonpatch" class="externalLink">Github Source</a></li>
+
+<li class="dark-toggle dark-toggle-xs">
+    <toggle
+        ng-model="$matchMedia.dark"
+        ng-change="switchColors()"
+        size="btn-md"
+        width="55px"
+        height="32px"
+        off-class="day"
+        on-class="night"
+        toggle-class="navbar-btn dark-toggle"
+        on="<i class='fa-solid fa-moon'></i>"
+        off="<i class='sun-icon'></i>"
+        title="Switch between dark and light color schemes"
+        tabindex="0"></toggle>
+		</li>
+		</ul>
+		</div>
+
+		<div class="footer-copyright" ng-class="{'text-center': $matchMedia.size == 'xs'}">
+			<span class="copyright">Copyright &copy;2025</span>
+	</div>
+	</footer>
+
+	<div ng-show="showBackToTop" class="back-to-top" ng-click="backToTop()"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+
+	<script src="./js/main-combined.js"></script>
+
+	<script>
+angular.module("sentry.site").constant("RELATIVE_ROOT", ".");
+angular.module("sentry.site").constant("SITE_MENU", [
+{
+	path: "index.html",
+	title: "Introduction",
+	parents: [{ title: "Overview" }]
+},
+{
+	path: "contributing.html",
+	title: "Contributing",
+	parents: [{ title: "Overview" }]
+},
+
+{
+	path: "/project-info.html",
+	title: "Project Information",
+	parents: [{ title: "Project Documentation" }]
+},
+{
+	path: "dependencies.html",
+	title: "Dependencies",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "dependency-info.html",
+	title: "Dependency Information",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "index.html",
+	title: "About",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "licenses.html",
+	title: "Licenses",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "plugin-management.html",
+	title: "Plugin Management",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "plugins.html",
+	title: "Plugins",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "scm.html",
+	title: "Source Code Management",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "summary.html",
+	title: "Summary",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "team.html",
+	title: "Team",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-info.html",
+			title: "Project Information"
+		}
+	]
+},
+{
+	path: "/project-reports.html",
+	title: "Project Reports",
+	parents: [{ title: "Project Documentation" }]
+},
+{
+	path: "apidocs/index.html",
+	title: "Javadoc",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-reports.html",
+			title: "Project Reports"
+		}
+	]
+},
+{
+	path: "jacoco/index.html",
+	title: "JaCoCo",
+	parents: [
+		{
+			title: "Project Documentation"
+		},
+		{
+			path: "project-reports.html",
+			title: "Project Reports"
+		}
+	]
+},
+
+]);
+
+	</script>
+</body>
+</html>

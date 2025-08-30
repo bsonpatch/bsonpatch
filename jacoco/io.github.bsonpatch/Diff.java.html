@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Diff.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">bsonpatch - RFC 6902 for Bson Values</a> &gt; <a href="index.source.html" class="el_package">io.github.bsonpatch</a> &gt; <span class="el_source">Diff.java</span></div><h1>Diff.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * &quot;License&quot;); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *  
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *  
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+package io.github.bsonpatch;
+
+import org.bson.BsonValue;
+
+class Diff {
+    private final Operation operation;
+    private final JsonPointer path;
+    private final BsonValue value;
+    private JsonPointer toPath; //only to be used in move operation
+    private final BsonValue srcValue; // only used in replace operation
+
+<span class="fc" id="L31">    Diff(Operation operation, JsonPointer path, BsonValue value) {</span>
+<span class="fc" id="L32">        this.operation = operation;</span>
+<span class="fc" id="L33">        this.path = path;</span>
+<span class="fc" id="L34">        this.value = value;</span>
+<span class="fc" id="L35">        this.srcValue = null;</span>
+<span class="fc" id="L36">    }</span>
+
+<span class="fc" id="L38">    Diff(Operation operation, JsonPointer fromPath, JsonPointer toPath) {</span>
+<span class="fc" id="L39">        this.operation = operation;</span>
+<span class="fc" id="L40">        this.path = fromPath;</span>
+<span class="fc" id="L41">        this.toPath = toPath;</span>
+<span class="fc" id="L42">        this.value = null;</span>
+<span class="fc" id="L43">        this.srcValue = null;</span>
+<span class="fc" id="L44">    }</span>
+    
+<span class="fc" id="L46">    Diff(Operation operation, JsonPointer path, BsonValue srcValue, BsonValue value) {</span>
+<span class="fc" id="L47">        this.operation = operation;</span>
+<span class="fc" id="L48">        this.path = path;</span>
+<span class="fc" id="L49">        this.value = value;</span>
+<span class="fc" id="L50">        this.srcValue = srcValue;</span>
+<span class="fc" id="L51">    }    </span>
+
+    public Operation getOperation() {
+<span class="fc" id="L54">        return operation;</span>
+    }
+
+    public JsonPointer getPath() {
+<span class="fc" id="L58">        return path;</span>
+    }
+
+    public BsonValue getValue() {
+<span class="fc" id="L62">        return value;</span>
+    }
+
+    public static Diff generateDiff(Operation replace, JsonPointer path, BsonValue target) {
+<span class="fc" id="L66">        return new Diff(replace, path, target);</span>
+    }
+    
+    public static Diff generateDiff(Operation replace, JsonPointer path, BsonValue source, BsonValue target) {
+<span class="fc" id="L70">        return new Diff(replace, path, source, target);</span>
+    }    
+
+    JsonPointer getToPath() {
+<span class="fc" id="L74">        return toPath;</span>
+    }
+    
+    public BsonValue getSrcValue(){
+<span class="fc" id="L78">        return srcValue;</span>
+    }    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
