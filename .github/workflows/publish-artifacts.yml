@@ -1,0 +1,50 @@
+name: Publish Artifacts
+
+on:
+  push:
+    tags:
+      - "*-RELEASE"
+      - "*-SNAPSHOT"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (overrides tag-derived)"
+        required: false
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    env:
+      # Derive version from workflow input or tag name
+      VERSION: ${{ inputs.version || github.ref_name }}
+      MAVEN_GPG_KEYNAME: ${{ secrets.MAVEN_GPG_KEYNAME }}
+      MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '24'
+          cache: maven
+          server-id: central
+          server-username: ${{ secrets.SONATYPE_USERNAME }}
+          server-password: ${{ secrets.SONATYPE_PASSWORD }}
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+
+      - name: Show version being published
+        run: | 
+          echo "Publishing version: $VERSION"
+
+      - name: Publish to Central (Portal)
+        run: |
+          mvn -B -ntp -Dversion.coordinate="$VERSION" -Prelease clean deploy

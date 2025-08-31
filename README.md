@@ -8,8 +8,8 @@ This [JSON Patch](http://jsonpatch.com) implementation works directly with [BSON
 
 The code here was forked (copied, renamed, repackaged, modified) from [eBay bsonpatch project](https://github.com/eBay/bsonpatch) which, in turn, was ported (forked, renamed, repackaged, modified) from the [zjsonpatch project](https://github.com/flipkart-incubator/zjsonpatch).
 
-![Tests Passing](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/tests.json)&nbsp;&nbsp;&nbsp;![Test Line Coverage](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/coverage.json)&nbsp;&nbsp;&nbsp;![Complexity](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/pmd-complexity.json)
-![Duplicate Blocks](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/cpd-blocks.json)&nbsp;&nbsp;&nbsp;![Pct Duplicate Lines](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/cpd-duplication.json)
+[![Tests Passing](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/tests.json)]() [![Test Line Coverage](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/coverage.json)]() [![Complexity](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/pmd-complexity.json)
+![Duplicate Blocks](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/cpd-blocks.json)]() [![Pct Duplicate Lines](https://img.shields.io/endpoint?style=for-the-badge&url=https://bsonpatch.github.io/bsonpatch/reports/cpd-duplication.json)]()
 
 ![GitHub Clones](https://img.shields.io/badge/dynamic/json?style=for-the-badge&label=Clones&query=count&url=https://gist.githubusercontent.com/dandoug/a5f78346daae50c50214e00aa731bad1/raw/clone.json&logo=github) [![Stars](https://img.shields.io/github/stars/bsonpatch/bsonpatch?style=for-the-badge&logo=github)](https://github.com/bsonpatch/bsonpatch/stargazers)
 [![Open Issues](https://img.shields.io/github/issues/bsonpatch/bsonpatch?style=for-the-badge&logo=github)](https://github.com/bsonpatch/bsonpatch/issues)
@@ -17,6 +17,7 @@ The code here was forked (copied, renamed, repackaged, modified) from [eBay bson
 [![Latest Release](https://img.shields.io/github/v/release/bsonpatch/bsonpatch?display_name=tag&style=for-the-badge&logo=github)](https://github.com/bsonpatch/bsonpatch/releases/latest)
 [![Release Date](https://img.shields.io/github/release-date/bsonpatch/bsonpatch?style=for-the-badge&logo=github)](https://github.com/bsonpatch/bsonpatch/releases)
 [![Downloads (All Releases)](https://img.shields.io/github/downloads/bsonpatch/bsonpatch/total?style=for-the-badge&logo=github)](https://github.com/bsonpatch/bsonpatch/releases)
+
 ## Description & Use-Cases
 - Java Library to find / apply JSON Patches according to [RFC 6902](https://datatracker.ietf.org/doc/html/rfc6902).
 - JSON Patch defines a JSON document structure for representing changes to a JSON document.
