@@ -121,7 +121,41 @@
 			<id>release</id>
 			<build>
 				<plugins>
-					<plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <version>3.24.0</version>
+                        <configuration>
+                            <targetJdk>${maven.compiler.release}</targetJdk>
+                            <failOnViolation>false</failOnViolation>
+                            <rulesets>
+                                <ruleset>${project.basedir}/pmd-ruleset.xml</ruleset>
+                            </rulesets>
+                            <!-- CPD config: keep tokens low so we don’t miss shorter 7-line blocks.
+                                 We’ll still filter by lines >= 10 in Groovy. -->
+                            <minimumTokens>25</minimumTokens>
+                            <linkXRef>false</linkXRef>
+                        </configuration>
+                        <executions>
+                            <!-- Generate PMD violations XML (includes CyclomaticComplexity rule findings) -->
+                            <execution>
+                                <id>run-pmd</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>pmd</goal>
+                                </goals>
+                            </execution>
+                            <!-- Generate CPD duplication XML -->
+                            <execution>
+                                <id>run-cpd</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>cpd</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>${javadocPluginVersion}</version>
@@ -203,6 +237,37 @@
                                                        byline="true"/>
 
                                     </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.gmavenplus</groupId>
+                        <artifactId>gmavenplus-plugin</artifactId>
+                        <version>4.2.1</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.apache.groovy</groupId>
+                                <artifactId>groovy-json</artifactId>
+                                <version>4.0.22</version>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.apache.groovy</groupId>
+                                <artifactId>groovy-xml</artifactId>
+                                <version>4.0.22</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>generate-report-json</id>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>execute</goal>
+                                </goals>
+                                <configuration>
+                                    <scripts>
+                                        <script>${project.basedir}/buildtools/generate-reports.groovy</script>
+                                    </scripts>
                                 </configuration>
                             </execution>
                         </executions>
