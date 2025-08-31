@@ -20,6 +20,7 @@ jobs:
     env:
       VERSION: ${{ github.event.inputs.version || github.ref_name }}
       GUARD_BRANCH: master  # change to 'main' if needed
+      MAVEN_GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,13 +49,15 @@ jobs:
             echo "proceed=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Set up Java
+      - name: Set up Java (with GPG)
         if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.proceed == 'true'
         uses: actions/setup-java@v4
         with:
           distribution: zulu
           java-version: '17'
           cache: maven
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Configure Git for CI pushes
         if: github.event_name == 'workflow_dispatch' || steps.guard.outputs.proceed == 'true'
