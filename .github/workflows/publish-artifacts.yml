@@ -1,0 +1,85 @@
+name: Publish Artifacts
+
+on:
+  push:
+    tags:
+      - "*-RELEASE"
+      - "*-SNAPSHOT"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to publish (overrides tag-derived)"
+        required: false
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    env:
+      # Derive version from workflow input or tag name
+      VERSION: ${{ inputs.version || github.ref_name }}
+      MAVEN_GPG_KEYNAME: ${{ secrets.GPG_KEYNAME }}
+      MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: zulu
+          java-version: '24'
+          cache: maven
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          overwrite-settings: true
+
+      - name: Show version being published
+        run: | 
+          echo "Publishing version: $VERSION"
+
+      # Actually change pom.xml to have the version, maven publish failed validation without it
+      - name: Stamp POM version.coordinate from $VERSION
+        shell: bash
+        run: |
+          echo "Stamping pom.xml <version.coordinate> with: $VERSION"
+          sed -i.bak -E 's|(</?version\.coordinate>)|\1|g' pom.xml # no-op to ensure file exists
+          sed -i.bak -E "s|(<version\.coordinate>)[^<]+(</version\.coordinate>)|\1${VERSION}\2|" pom.xml
+          echo "Post-stamp value:"
+          grep -n "<version.coordinate>" pom.xml || { echo "Failed to locate version.coordinate in pom.xml"; exit 1; }
+    
+      # Write this out explicitly, had trouble with central uid/pw indirection through env.vars for SNAPSHOTs
+      - name: Write Maven settings.xml
+        shell: bash
+        env:
+          CENTRAL_USER: ${{ secrets.SONATYPE_USERNAME }}
+          CENTRAL_PASS: ${{ secrets.SONATYPE_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml <<XML
+          <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${CENTRAL_USER}</username>
+                <password>${CENTRAL_PASS}</password>
+              </server>
+              <server>
+                <id>gpg.passphrase</id>
+                <passphrase>${GPG_PASSPHRASE}</passphrase>
+              </server>
+            </servers>
+          </settings>
+          XML
+          
+      - name: Publish to Central (Portal)
+        run: |
+          mvn -B -ntp -Dversion.coordinate="$VERSION" -Prelease clean deploy

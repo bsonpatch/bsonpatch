@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Project Rules"
+         xmlns="https://pmd.github.io/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://pmd.github.io/ruleset/2.0.0 https://pmd.github.io/ruleset_2_0_0.xsd">
+    <description>Rules to collect Cyclomatic Complexity for all methods (PMD 6.x)</description>
+
+    <!-- PMD 6.x: CyclomaticComplexity lives in category/java/design.xml -->
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <!-- Report every method/class by setting report levels low -->
+        <properties>
+            <property name="methodReportLevel" value="1"/>
+            <property name="classReportLevel" value="1"/>
+        </properties>
+    </rule>
+</ruleset>

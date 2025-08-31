@@ -1,0 +1,12 @@
+body {
+    --banner-bgcolor: #266fd0;
+    --alternate-bgcolor: var(--banner-bgcolor);
+    --alternate-fgcolor: var(--banner-fgcolor);
+    --link-color: #d50c37;
+}
+
+/* Lighter red for dark mode ('dark' class on the <body> element) */
+body.dark {
+    --banner-bgcolor: #242424;
+    --link-color: #e95420;
+}
