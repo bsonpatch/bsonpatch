@@ -57,13 +57,13 @@
 					<div class="header-title">bsonpatch - RFC 6902 for Bson Values</div>
 						<div class="header-subtitle">
 							<span class="version-prefix">Version</span>
-							<span class="version">test-0.5.3-SNAPSHOT</span>
+							<span class="version">test-0.5.4-SNAPSHOT</span>
 						</div>
 					</div>
 					<div class="navbar-brand header-xxs visible-xs">
 						<div class="header-title">bsonpatch - RFC 6902 for Bson Values</div>
 						<div class="header-subtitle">
-							Version <strong>test-0.5.3-SNAPSHOT</strong>
+							Version <strong>test-0.5.4-SNAPSHOT</strong>
 						</div>
 					</div>
 					<form class="navbar-form site-search site-search-xs visible-xs" ng-show="showSearchInput">
@@ -151,7 +151,7 @@
 
 					<div class="col-md-12">
 					<div class="page-header visible-print-block">
-							<h3><small>bsonpatch - RFC 6902 for Bson Values</small><br/>							bsonpatch - RFC 6902 for Bson Values test-0.5.3-SNAPSHOT
+							<h3><small>bsonpatch - RFC 6902 for Bson Values</small><br/>							bsonpatch - RFC 6902 for Bson Values test-0.5.4-SNAPSHOT
 							</h3>
 						</div>
 								<div class="home-xs visible-xs">
@@ -182,19 +182,21 @@
 <p>This is an implementation of <a class="externalLink" href="https://datatracker.ietf.org/doc/html/rfc6902">RFC 6902 JSON Patch</a><sup class="visible-print-inline">[1]</sup> written in Java with extended BSON pointers.</p>
 <p>This <a class="externalLink" href="http://jsonpatch.com">JSON Patch</a><sup class="visible-print-inline">[2]</sup> implementation works directly with <a class="externalLink" href="http://bsonspec.org/">BSON documents</a><sup class="visible-print-inline">[3]</sup> using the <a class="externalLink" href="https://www.mongodb.com/json-and-bson">MongoDB Java driver implementation of BSON</a><sup class="visible-print-inline">[4]</sup>.</p>
 <p>The code here was forked (copied, renamed, repackaged, modified) from <a class="externalLink" href="https://github.com/eBay/bsonpatch">eBay bsonpatch project</a><sup class="visible-print-inline">[5]</sup> which, in turn, was ported (forked, renamed, repackaged, modified) from the <a class="externalLink" href="https://github.com/flipkart-incubator/zjsonpatch">zjsonpatch project</a><sup class="visible-print-inline">[6]</sup>.</p>
+<p><img src="https://img.shields.io/endpoint?style=for-the-badge&amp;url=https://bsonpatch.github.io/bsonpatch/reports/tests.json" alt="Tests Passing">&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/endpoint?style=for-the-badge&amp;url=https://bsonpatch.github.io/bsonpatch/reports/coverage.json" alt="Test Line Coverage">&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/endpoint?style=for-the-badge&amp;url=https://bsonpatch.github.io/bsonpatch/reports/pmd-complexity.json" alt="Complexity"> <img src="https://img.shields.io/endpoint?style=for-the-badge&amp;url=https://bsonpatch.github.io/bsonpatch/reports/cpd-blocks.json" alt="Duplicate Blocks">&nbsp;&nbsp;&nbsp;<img src="https://img.shields.io/endpoint?style=for-the-badge&amp;url=https://bsonpatch.github.io/bsonpatch/reports/cpd-duplication.json" alt="Pct Duplicate Lines"></p>
+<p><img src="https://img.shields.io/badge/dynamic/json?style=for-the-badge&amp;label=Clones&amp;query=count&amp;url=https://gist.githubusercontent.com/dandoug/a5f78346daae50c50214e00aa731bad1/raw/clone.json&amp;logo=github" alt="GitHub Clones"> <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/stargazers"><img src="https://img.shields.io/github/stars/bsonpatch/bsonpatch?style=for-the-badge&amp;logo=github" alt="Stars"></a><sup class="visible-print-inline">[7]</sup> <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/issues"><img src="https://img.shields.io/github/issues/bsonpatch/bsonpatch?style=for-the-badge&amp;logo=github" alt="Open Issues"></a><sup class="visible-print-inline">[8]</sup> <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/commits"><img src="https://img.shields.io/github/last-commit/bsonpatch/bsonpatch?style=for-the-badge&amp;logo=github" alt="Last Commit"></a><sup class="visible-print-inline">[9]</sup> <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/releases/latest"><img src="https://img.shields.io/github/v/release/bsonpatch/bsonpatch?display_name=tag&amp;style=for-the-badge&amp;logo=github" alt="Latest Release"></a><sup class="visible-print-inline">[10]</sup> <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/releases"><img src="https://img.shields.io/github/release-date/bsonpatch/bsonpatch?style=for-the-badge&amp;logo=github" alt="Release Date"></a><sup class="visible-print-inline">[11]</sup> <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/releases"><img src="https://img.shields.io/github/downloads/bsonpatch/bsonpatch/total?style=for-the-badge&amp;logo=github" alt="Downloads (All Releases)"></a><sup class="visible-print-inline">[11]</sup></p>
 <section>
  <h2 id="description-26-use-cases"><a href="#description-26-use-cases">Description &amp; Use-Cases</a></h2>
  <ul>
   <li>Java Library to find / apply JSON Patches according to <a class="externalLink" href="https://datatracker.ietf.org/doc/html/rfc6902">RFC 6902</a><sup class="visible-print-inline">[1]</sup>.</li>
   <li>JSON Patch defines a JSON document structure for representing changes to a JSON document.</li>
   <li>It can be used to avoid sending a whole document when only a part has changed, thus reducing network bandwidth requirements if data (in JSON format) is required to send across multiple systems over network or in case of multi DC transfer.</li>
-  <li>When used in combination with the HTTP PATCH method as per <a class="externalLink" href="https://datatracker.ietf.org/doc/html/rfc5789">RFC 5789 HTTP PATCH</a><sup class="visible-print-inline">[7]</sup>, it will do partial updates for HTTP APIs in a standard way.</li>
+  <li>When used in combination with the HTTP PATCH method as per <a class="externalLink" href="https://datatracker.ietf.org/doc/html/rfc5789">RFC 5789 HTTP PATCH</a><sup class="visible-print-inline">[12]</sup>, it will do partial updates for HTTP APIs in a standard way.</li>
   <li>Extended JSON pointer functionality (i.e. reference array elements via a key): <code>/array/id=123/data</code>
    <ul>
     <li>The user has to ensure that a unique field is used as a reference key. Should there be more than one array element matching the given key-value pair, the first element will be selected.</li>
     <li>Key based referencing may be slow for large arrays. Hence, standard index based array pointers should be used for large arrays.</li>
    </ul></li>
-  <li>This library compares two <a class="externalLink" href="https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonValue.html">BsonValue</a><sup class="visible-print-inline">[8]</sup> inputs and produces a <a class="externalLink" href="https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonArray.html">BsonArray</a><sup class="visible-print-inline">[9]</sup> of the changes.</li>
+  <li>This library compares two <a class="externalLink" href="https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonValue.html">BsonValue</a><sup class="visible-print-inline">[13]</sup> inputs and produces a <a class="externalLink" href="https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonArray.html">BsonArray</a><sup class="visible-print-inline">[14]</sup> of the changes.</li>
  </ul>
  <section>
   <h3 id="compatible-with-java-8-and-above-all-versions"><a href="#compatible-with-java-8-and-above-all-versions">Compatible with : Java 8 and above all versions</a></h3>
@@ -211,13 +213,13 @@
   <h3 id="how-to-use"><a href="#how-to-use">How to use:</a></h3>
  </section>
  <section>
-  <h3 id="current-version-test-0-5-3-snapshot"><a href="#current-version-test-0-5-3-snapshot">Current Version : test-0.5.3-SNAPSHOT</a></h3>
+  <h3 id="current-version-test-0-5-4-snapshot"><a href="#current-version-test-0-5-4-snapshot">Current Version : test-0.5.4-SNAPSHOT</a></h3>
   <p>Add following to <code>&lt;dependencies/&gt;</code> section of your pom.xml -</p>
   <div class="source">
    <pre copy-to-clipboard=""><code class="language-xml">&lt;dependency&gt;
   &lt;groupId&gt;io.github.bsonpatch&lt;/groupId&gt;
   &lt;artifactId&gt;bsonpatch&lt;/artifactId&gt;
-  &lt;version&gt;test-0.5.3-SNAPSHOT&lt;/version&gt;
+  &lt;version&gt;test-0.5.4-SNAPSHOT&lt;/version&gt;
 &lt;/dependency&gt;
 </code></pre>
   </div>
@@ -232,7 +234,7 @@
 </code></pre>
   </div>
   <p>Computes and returns a JSON <code>patch</code> (as a BsonArray) from <code>source</code> to <code>target</code>, Both <code>source</code> and <code>target</code> must be either valid BSON objects or arrays or values. Further, if resultant <code>patch</code> is applied to <code>source</code>, it will yield <code>target</code>.</p>
-  <p>The algorithm which computes this JsonPatch currently generates following operations as per <a class="externalLink" href="https://datatracker.ietf.org/doc/html/rfc6902#section-4">RFC 6902</a><sup class="visible-print-inline">[10]</sup> -</p>
+  <p>The algorithm which computes this JsonPatch currently generates following operations as per <a class="externalLink" href="https://datatracker.ietf.org/doc/html/rfc6902#section-4">RFC 6902</a><sup class="visible-print-inline">[15]</sup> -</p>
   <ul>
    <li><code>add</code></li>
    <li><code>remove</code></li>
@@ -336,17 +338,17 @@ BsonArray patch = BsonDiff.asJson(BsonValue source, BsonValue target, flags)
   <li>
    <p><b>Contributing</b>: Pull requests are welcome!</p>
    <ul>
-    <li>Read the <a href="contributing.html">Contributing Guide</a><sup class="visible-print-inline">[11]</sup></li>
-    <li>Submit <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/issues">github issues</a><sup class="visible-print-inline">[12]</sup> for any feature enhancements, bugs or documentation problems</li>
+    <li>Read the <a href="contributing.html">Contributing Guide</a><sup class="visible-print-inline">[16]</sup></li>
+    <li>Submit <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/issues">github issues</a><sup class="visible-print-inline">[8]</sup> for any feature enhancements, bugs or documentation problems</li>
    </ul></li>
   <li>
-   <p><b>Support</b>: Questions/comments can posted as <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/issues">github issues</a><sup class="visible-print-inline">[12]</sup></p></li>
+   <p><b>Support</b>: Questions/comments can posted as <a class="externalLink" href="https://github.com/bsonpatch/bsonpatch/issues">github issues</a><sup class="visible-print-inline">[8]</sup></p></li>
  </ul>
 </section>
 <section>
  <h2 id="maintainers"><a href="#maintainers">Maintainers</a></h2>
  <ul>
-  <li><a class="externalLink" href="https://github.com/dandoug">Dan Douglas</a><sup class="visible-print-inline">[13]</sup></li>
+  <li><a class="externalLink" href="https://github.com/dandoug">Dan Douglas</a><sup class="visible-print-inline">[17]</sup></li>
  </ul>
 </section>
 
@@ -363,13 +365,17 @@ BsonArray patch = BsonDiff.asJson(BsonValue source, BsonValue target, flags)
 <li>[4] https://www.mongodb.com/json-and-bson</li>
 <li>[5] https://github.com/eBay/bsonpatch</li>
 <li>[6] https://github.com/flipkart-incubator/zjsonpatch</li>
-<li>[7] https://datatracker.ietf.org/doc/html/rfc5789</li>
-<li>[8] https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonValue.html</li>
-<li>[9] https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonArray.html</li>
-<li>[10] https://datatracker.ietf.org/doc/html/rfc6902#section-4</li>
-<li>[11] contributing.html</li>
-<li>[12] https://github.com/bsonpatch/bsonpatch/issues</li>
-<li>[13] https://github.com/dandoug</li>
+<li>[7] https://github.com/bsonpatch/bsonpatch/stargazers</li>
+<li>[8] https://github.com/bsonpatch/bsonpatch/issues</li>
+<li>[9] https://github.com/bsonpatch/bsonpatch/commits</li>
+<li>[10] https://github.com/bsonpatch/bsonpatch/releases/latest</li>
+<li>[11] https://github.com/bsonpatch/bsonpatch/releases</li>
+<li>[12] https://datatracker.ietf.org/doc/html/rfc5789</li>
+<li>[13] https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonValue.html</li>
+<li>[14] https://mongodb.github.io/mongo-java-driver/3.12/javadoc/org/bson/BsonArray.html</li>
+<li>[15] https://datatracker.ietf.org/doc/html/rfc6902#section-4</li>
+<li>[16] contributing.html</li>
+<li>[17] https://github.com/dandoug</li>
 </ul>
 							</div>
 						</div>
@@ -446,7 +452,7 @@ BsonArray patch = BsonDiff.asJson(BsonValue source, BsonValue target, flags)
 	<footer class="footer">
 
 		<p class="footer-title" ng-class="{'text-center': $matchMedia.size == 'xs'}">
-			<strong>bsonpatch - RFC 6902 for Bson Values test-0.5.3-SNAPSHOT</strong>
+			<strong>bsonpatch - RFC 6902 for Bson Values test-0.5.4-SNAPSHOT</strong>
 			<span class="hidden-xs">|</span><br class="hidden-sm hidden-md hidden-lg"/>
 			Documentation as of <strong>2025-08-31</strong>
 		</p>
