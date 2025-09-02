@@ -17,7 +17,10 @@
 
     <custom>
         <bodyClass>sentry-orange</bodyClass>
-        <keywords>bson</keywords>
+        <keywords>bson,json,jsonpatch,mongo</keywords>
+        <social>
+            <twitter>bsonpatch</twitter>
+        </social>
     </custom>
 
     <body>
