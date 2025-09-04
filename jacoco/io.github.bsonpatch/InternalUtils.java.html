@@ -23,56 +23,18 @@ import org.bson.BsonArray;
 import org.bson.BsonValue;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
-<span class="nc" id="L30">class InternalUtils {</span>
+<span class="nc" id="L28">class InternalUtils {</span>
 
     static List&lt;BsonValue&gt; toList(BsonArray input) {
-<span class="fc" id="L33">        int size = input.size();</span>
-<span class="fc" id="L34">        List&lt;BsonValue&gt; toReturn = new ArrayList&lt;BsonValue&gt;(size);</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
-<span class="fc" id="L36">            toReturn.add(input.get(i));</span>
+<span class="fc" id="L31">        int size = input.size();</span>
+<span class="fc" id="L32">        List&lt;BsonValue&gt; toReturn = new ArrayList&lt;BsonValue&gt;(size);</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc" id="L34">            toReturn.add(input.get(i));</span>
         }
-<span class="fc" id="L38">        return toReturn;</span>
+<span class="fc" id="L36">        return toReturn;</span>
     }
 
-    static List&lt;BsonValue&gt; longestCommonSubsequence(final List&lt;BsonValue&gt; a, final List&lt;BsonValue&gt; b) {
-<span class="nc bnc" id="L42" title="All 4 branches missed.">        if (a == null || b == null) {</span>
-<span class="nc" id="L43">            throw new NullPointerException(&quot;List must not be null for longestCommonSubsequence&quot;);</span>
-        }
-
-<span class="nc" id="L46">        List&lt;BsonValue&gt; toReturn = new LinkedList&lt;BsonValue&gt;();</span>
-
-<span class="nc" id="L48">        int aSize = a.size();</span>
-<span class="nc" id="L49">        int bSize = b.size();</span>
-<span class="nc" id="L50">        int temp[][] = new int[aSize + 1][bSize + 1];</span>
-
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        for (int i = 1; i &lt;= aSize; i++) {</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">            for (int j = 1; j &lt;= bSize; j++) {</span>
-<span class="nc bnc" id="L54" title="All 4 branches missed.">                if (i == 0 || j == 0) {</span>
-<span class="nc" id="L55">                    temp[i][j] = 0;</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">                } else if (a.get(i - 1).equals(b.get(j - 1))) {</span>
-<span class="nc" id="L57">                    temp[i][j] = temp[i - 1][j - 1] + 1;</span>
-                } else {
-<span class="nc" id="L59">                    temp[i][j] = Math.max(temp[i][j - 1], temp[i - 1][j]);</span>
-                }
-            }
-        }
-<span class="nc" id="L63">        int i = aSize, j = bSize;</span>
-<span class="nc bnc" id="L64" title="All 4 branches missed.">        while (i &gt; 0 &amp;&amp; j &gt; 0) {</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (a.get(i - 1).equals(b.get(j - 1))) {</span>
-<span class="nc" id="L66">                toReturn.add(a.get(i - 1));</span>
-<span class="nc" id="L67">                i--;</span>
-<span class="nc" id="L68">                j--;</span>
-<span class="nc bnc" id="L69" title="All 2 branches missed.">            } else if (temp[i - 1][j] &gt; temp[i][j - 1])</span>
-<span class="nc" id="L70">                i--;</span>
-            else
-<span class="nc" id="L72">                j--;</span>
-        }
-<span class="nc" id="L74">        Collections.reverse(toReturn);</span>
-<span class="nc" id="L75">        return toReturn;</span>
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
